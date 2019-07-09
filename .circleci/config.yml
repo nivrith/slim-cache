@@ -1,0 +1,50 @@
+
+---
+version: 2
+jobs:
+  node-latest: &test
+    docker:
+      - image: node:latest
+    working_directory: ~/app
+    steps:
+      - checkout
+      - restore_cache: &restore_cache
+          keys:
+            - v1-npm-{{checksum ".circleci/config.yml"}}-{{checksum "yarn.lock"}}
+            - v1-npm-{{checksum ".circleci/config.yml"}}
+      - run:
+          name: Install dependencies
+          command: yarn
+      - run:
+          name: Testing
+          command: yarn test
+  node-10:
+    <<: *test
+    docker:
+      - image: node:10.16.0
+  cache:
+    <<: *test
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: yarn
+      - save_cache:
+          key: v1-npm-{{checksum ".circleci/config.yml"}}-{{checksum "yarn.lock"}}
+          paths:
+            - ~/app/node_modules
+            - /usr/local/share/.cache/yarn
+            - /usr/local/share/.config/yarn
+
+workflows:
+  version: 2
+  "slim-cache":
+    jobs:
+      - node-latest
+      - node-10
+      - cache:
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/

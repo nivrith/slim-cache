@@ -1,0 +1,55 @@
+{
+  "name": "slim-cache",
+  "version": "0.1.0",
+  "description": "Super Fast Lightweight Cache with a Map like interface",
+  "main": "dist/index",
+  "types": "dist/index.d.ts",
+  "repository": "https://github.com/nivrith/slim-cache",
+  "author": "Nivrith <nivrithgomatam@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "cache",
+    "slim-cache",
+    "fast-cache"
+  ],
+  "scripts": {
+    "compile": "npm run clean && tsc -b",
+    "start": "yarn compile && node dist/src/index",
+    "test": "nyc mocha --require ts-node/register test/**/*.spec.ts",
+    "prepublishOnly": "npm run compile",
+    "pretest": "npm run compile",
+    "clean": "del-cli dist",
+    "docs": "typedoc src"
+  },
+  "nyc": {
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "all": true,
+    "lines": 80,
+    "exclude": [
+      "test",
+      "docs",
+      "dist"
+    ],
+    "check-coverage": true
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {},
+  "engines": {
+    "node": ">=8"
+  },
+  "devDependencies": {
+    "@istanbuljs/nyc-config-typescript": "^0.1.3",
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.7",
+    "chai": "^4.2.0",
+    "del-cli": "^2.0.0",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.18.0",
+    "typedoc": "^0.14.2",
+    "typescript": "^3.5.2"
+  }
+}
