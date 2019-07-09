@@ -1,6 +1,6 @@
 {
   "name": "slim-cache",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Super Fast Lightweight Cache with a Map like interface",
   "main": "dist/index",
   "types": "dist/index.d.ts",
