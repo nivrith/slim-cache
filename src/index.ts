@@ -32,7 +32,7 @@ export class SlimCache {
    * @param {*} cache Preferably an Object Without Prototype
    * @memberof SlimCache
    */
-  constructor(cache: any = Object.create(null)) {
+  constructor(cache: any = {}) {
     this.cache = cache;
   }
 
@@ -44,8 +44,7 @@ export class SlimCache {
    * @memberof SlimCache
    */
   public has(key: keyof any) {
-    let val = this.cache[key];
-    return typeof val !== undefined && val !== null;
+    return (typeof this.cache[key] !== 'undefined');
   }
 
   /**
