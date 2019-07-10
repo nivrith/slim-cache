@@ -9,6 +9,12 @@
   "license": "MIT",
   "keywords": [
     "cache",
+    "memoize",
+    "caching",
+    "perf",
+    "performance",
+    "optimizations",
+    "optimize",
     "slim-cache",
     "fast-cache"
   ],
@@ -17,8 +23,9 @@
     "start": "yarn compile && node dist/src/index",
     "test": "nyc mocha --require ts-node/register test/**/*.spec.ts",
     "prepublishOnly": "npm run compile",
-    "pretest": "npm run compile",
+    "pretest": "npm run clean && npm run compile",
     "clean": "del-cli dist",
+    "release": "npx np",
     "docs": "typedoc src",
     "trace": "tsc -b && node --trace-deopt --trace-opt --runtime_call_stats --trace_ic --trace_ic",
     "devtools": "node --inspect --inspect-brk",
@@ -37,7 +44,7 @@
     "check-coverage": true
   },
   "files": [
-    "dist"
+    "dist/src"
   ],
   "dependencies": {},
   "engines": {
