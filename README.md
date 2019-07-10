@@ -45,7 +45,7 @@ All benchmarks were run using [benchmark](https://www.npmjs.com/package/benchmar
 [fast-memoize](https://npmjs.com/package/fast-memoize) was used with various caches to memoize
 a standard recursive fibonacci function
 
-Bench mark was run for all the memoized functions to find 40th fibonacci number
+Benchmark was run for all the memoized functions to find 40th fibonacci number
 
 ``` js
 
@@ -65,6 +65,21 @@ Bench mark was run for all the memoized functions to find 40th fibonacci number
 │ vanilla      │ 1           │ ± 6.91%                  │ 7           │
 └──────────────┴─────────────┴──────────────────────────┴─────────────┘
 ```
+
+#### Legend
+
+- slim-cache : fibonacci function memoized using fast-memoize with SlimCache instance
+
+- object cache: fibonacci function memoized using fast-memoize with Empty Object based cache
+
+- map-cache: fibonacci function memoized using fast-memoize with [MapCache](https://npmjs.com/package/map-cache)
+ instance
+
+- fast-memoize: default fast-memoize cache
+
+- native map: fibonacci function memoized using fast-memoize with Native ES6 Map based cache
+
+- vanilla: fibonacci function without memoization
 
 ### Methods
 
